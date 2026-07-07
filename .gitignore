@@ -1,0 +1,24 @@
+# Ruflo / claude-flow runtime state
+.claude-flow/
+.swarm/
+ruvector.db
+
+# Claude Code local settings (machine-specific)
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Env files
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
