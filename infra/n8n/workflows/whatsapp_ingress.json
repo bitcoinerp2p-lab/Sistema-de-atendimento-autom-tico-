@@ -1,0 +1,53 @@
+{
+  "name": "ORION OS - WhatsApp Ingress",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "orion/whatsapp/ingress",
+        "options": {}
+      },
+      "id": "1f9b8e10-0000-4000-8000-000000000001",
+      "name": "Evolution API Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "orion-whatsapp-ingress"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://core-engine:8000/webhook/evolution/whatsapp/ingress",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "1f9b8e10-0000-4000-8000-000000000002",
+      "name": "Forward to ORION Core Engine",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300]
+    }
+  ],
+  "connections": {
+    "Evolution API Webhook": {
+      "main": [
+        [
+          {
+            "node": "Forward to ORION Core Engine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "notes": "Fase 1 (MVP Estrutural). Importar manualmente no n8n (Workflows > Import from File). Configure a Evolution API para apontar o webhook de mensagens para http://n8n:5678/webhook/orion/whatsapp/ingress."
+  }
+}
